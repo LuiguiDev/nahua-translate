@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const PORT = 1000
+const PORT = process.env.PORT ?? 1000
 const data = require('./dictionary.json')
 const crypto = require('node:crypto')
 const { validateWord, validatePatch } = require('./schemas/word')
