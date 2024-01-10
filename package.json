@@ -1,0 +1,16 @@
+{
+  "name": "03-first-api",
+  "version": "1.0.0",
+  "description": "first with node js",
+  "main": "02_api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch app.js"
+  },
+  "author": "luis rz",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.18.2",
+    "zod": "3.22.4"
+  }
+}

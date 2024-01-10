@@ -1,0 +1,25 @@
+### get all data
+GET http://localhost:1000/translate
+
+### jfklsad
+GET http://localhost:1000/translate/Calli
+
+### problably not working
+GET http://localhost:1000/translate
+
+### create a new word
+POST http://localhost:1000/translate
+Content-Type: application/json
+
+{
+  "graphy": "New word created with POST method, passed through the http call",
+  "translationES": 21
+}
+
+### upload a word
+PATCH http://localhost:1000/translate/Calli
+Content-Type: application/json
+
+{
+  "translationEs": "Hogar"
+}
