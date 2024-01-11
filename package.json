@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "first with node js",
   "main": "02_api.js",
+  "type": "module",
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",

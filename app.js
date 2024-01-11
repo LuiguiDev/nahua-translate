@@ -1,14 +1,15 @@
-const express = require('express')
-const app = express()
+import express, { json } from 'express'
+import { randomUUID } from 'node:crypto'
+import data from './dictionary.json' with {type: 'json'}
+
 const PORT = process.env.PORT ?? 1000
-const data = require('./dictionary.json')
-const crypto = require('node:crypto')
-const { validateWord, validatePatch } = require('./schemas/word')
+import { validateWord, validatePatch } from './schemas/word.js'
 const ACCEPTED_ORIGINS = ['http://localhost:5500']
 
+const app = express()
 app.disable('x-powered-by')
 
-app.use(express.json()) // middleware to cut req.on('data) -> req.on('end', chunks), etc on POST methods
+app.use(json()) // middleware to cut req.on('data) -> req.on('end', chunks), etc on POST methods
 
 app.get('/translate', (req, res) => {
   // how to avoid CORS errors
@@ -52,7 +53,7 @@ app.post('/translate', (req, res) => {
   }
 
   const newWord = {
-    id: crypto.randomUUID(),
+    id: randomUUID(),
     ...result.data
   }
 
@@ -84,7 +85,7 @@ app.patch('/translate/:targetWord', (req, res) => {
 app.delete('/translate/target', (req, res) => {
   const origin = req.header('origin')
   const { target } = req.params
-  const targetIndex = data.findIndex(word => word.graphy.toLocaleLowerCase() === target.toLowerCase())
+  const targetIndex = findIndex(word => word.graphy.toLocaleLowerCase() === target.toLowerCase())
 
   if(ACCEPTED_ORIGINS.includes(origin) || !origin){
     res.header('Access-Control-Allow-Origin', origin)
